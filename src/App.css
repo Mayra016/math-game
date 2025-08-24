@@ -17,6 +17,33 @@ body {
 	font-family: 'Ubuntu';
 }
 
+#language-select {
+	background-color: var(--yellow);
+	padding: 10px;
+	font-size: 20px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.header-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 40px;
+}
+
+.header-bar img {
+	width: 60px;
+	height: auto;
+	cursor: pointer;
+	transition: transform 0.5s ease-in-out;
+}
+
+.header-bar img:hover {
+	transform: rotateZ(30deg);
+
+}
+
 h1 {
 	font-family: 'Russo One';
 }
@@ -29,10 +56,11 @@ h1 {
 	border-radius: 15px;
 	padding: 10px;
 	transition: transform 0.5s ease-in-out;
+	box-shadow: 2px 2px 2px 1px rgb(66, 1, 17, 0.3);
 }
 
 .gameModes:hover {
-	transform: translateY(-10px);
+	transform: rotateX(-10deg);
 }
 
 .gameModes img {
