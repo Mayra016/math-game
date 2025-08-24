@@ -1,4 +1,6 @@
 {
     "equations" : "Calculate the equations to earn more points",
-    "play" : "Play"
+    "play" : "Play",
+    "menu" : "Menu",
+    "score" : "Score"
 }

@@ -1,4 +1,6 @@
 {
     "equations" : "Calcula las ecuaciones para sumar puntos",
-    "play" : "Jugar"
+    "play" : "Jugar",
+    "menu" : "Menú",
+    "score" : "Puntos"
 }
