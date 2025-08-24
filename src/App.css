@@ -112,3 +112,59 @@ button:hover {
     transform: scale(1.07);
 }
 
+/* PLAY SCREEN */
+.players-info {
+	max-width: 100%;              
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between; 
+	align-items: center;    
+	padding: 0px 20px;  
+	align-items: center;   
+	padding: 30px 40px;
+}
+
+.menu-btn .menu-logo {
+	width: 30px;
+	height: auto;
+}
+
+.menu-btn {
+	background-color: var(--yellow);
+	width: 70px;
+}
+
+.score {
+	max-height: 30px;
+	align-items: center;
+}
+
+.score, .lifes {
+	display: flex;
+	flex-direction: row;
+	background-color: var(--yellow);
+	padding: 10px;
+	border-radius: 10px;
+	width: auto;
+	gap: 10px;
+}
+
+.lifes-number {
+	width: 50px;
+	transition: transform 1s ease, filter 0.5s ease; 
+}
+
+.lifes-number:hover {
+	animation: rotate 3s linear infinite;
+	filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.3));
+}
+  
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+  
