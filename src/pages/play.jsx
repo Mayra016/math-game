@@ -1,11 +1,15 @@
 import PlayersInfo from "../components/playersInfo";
+import Game from "../components/game";
 
 const Play = () =>  {
     let lifes = 3;
     let score = 0;
 
     return(
-        <PlayersInfo lifes={lifes} score={score}></PlayersInfo>
+        <div>
+            <PlayersInfo lifes={lifes} score={score}></PlayersInfo>
+            <Game levelLifes={lifes}></Game>
+        </div>
     );
 }
 
