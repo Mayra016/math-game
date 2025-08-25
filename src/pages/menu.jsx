@@ -6,10 +6,10 @@ const Menu = () => {
     const gameModes = [{ "description" : text("equations"), "imgURL": "https://img.icons8.com/?size=100&id=46667&format=png&color=000000"}];
 
     return(
-        <div class="container">
+        <div className="container">
             <h1>MathGame</h1>
             {gameModes.map((mode, index) => (
-                <GameModes description={mode["description"]} imgURL={mode["imgURL"]}></GameModes>
+                <GameModes key={index} description={mode["description"]} imgURL={mode["imgURL"]}></GameModes>
             ))}
             
         </div>
