@@ -2,5 +2,6 @@
     "equations" : "Calcula las ecuaciones para sumar puntos",
     "play" : "Jugar",
     "menu" : "Menú",
-    "score" : "Puntos"
+    "score" : "Puntos",
+    "send" : "Enviar"
 }
