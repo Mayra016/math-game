@@ -6,6 +6,7 @@ import Menu from './pages/menu';
 import Play from './pages/play';
 import LanguageSelect from './components/languageSelect';
 import HeaderBar from './components/headerBar';
+import Config from './pages/configuration';
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
             <Route path="/menu" element={<Menu></Menu>}></Route>
             <Route path="/" element={<Menu></Menu>}></Route>
             <Route path="/play" element={<Play></Play>}></Route>
+            <Route path="/configurations" element={<Config></Config>}></Route>
           </Routes>
         </Router>
       </LanguageProvider>
     </div>
+    
   );
 }
 
