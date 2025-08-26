@@ -1,15 +1,17 @@
 import { useTranslation } from "../components/LanguageProvider";
 import { redirect } from "../utils/redirect";
+import { useNavigate } from "react-router-dom";
 
 
 const GameModes = ({key, description, imgURL}) => {
     const {text} = useTranslation();
+    const navigate = useNavigate();
 
     return(
         <div className="gameModes" id={key} >
             <h3>{description}</h3>
             <img src={imgURL}></img>
-            <button onClick={() => redirect('/play')}>{text("play")}</button>
+            <button onClick={() => navigate('/play')}>{text("play")}</button>
         </div>
     );
 };
