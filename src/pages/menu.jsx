@@ -2,12 +2,16 @@ import GameModes from "../components/gameModes";
 import { useTranslation } from "../components/LanguageProvider";
 import { useRef, useEffect } from 'react';
 import music from '../assets/music.mp3';
+import GameModesInfo from '../models/gameModesInfo';
+import freeStyleImg from '../assets/freestyle-icon.png';
+import timmerIcon from '../assets/timmer-icon.png';
+
 
 const Menu = () => {
     const {text} = useTranslation();
     const volume = localStorage.getItem("vol") || 50;
     const audioElement = useRef(null);
-    const gameModes = [{ "description" : text("equations"), "imgURL": "https://img.icons8.com/?size=100&id=46667&format=png&color=000000"}];
+    const gameModes = [new GameModesInfo("Freestyle", text("equations"), freeStyleImg), new GameModesInfo("Beat The Clock", text("clock-description"), timmerIcon)];
 
     useEffect(() => {
         if (audioElement.current) {
@@ -18,9 +22,11 @@ const Menu = () => {
     return(
         <div className="container">
             <h1>MathGame</h1>
-            {gameModes.map((mode, index) => (
-                <GameModes key={index} description={mode["description"]} imgURL={mode["imgURL"]}></GameModes>
-            ))}
+            <div className="modes">
+                {gameModes.map((mode, index) => (
+                    <GameModes key={index} name={mode["name"]} description={mode["description"]} imgURL={mode["imgURL"]} link={mode["link"]}></GameModes>
+                ))}
+            </div>
             <audio ref={audioElement} src={music} autoPlay loop></audio>
         </div>
     );
