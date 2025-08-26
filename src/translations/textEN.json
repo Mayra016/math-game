@@ -7,5 +7,11 @@
     "redirect-menu": "Menu",
     "playAgain" : "Play again",
     "lost-title": "You have lost!",
-    "lost-text": "Your score: "
+    "lost-text": "Your score: ",
+    "volumeTxt": "Volume:",
+    "save": "Save",
+    "youtube": "Youtube channel with fun facts",
+    "youtube-link": "https://www.youtube.com/@peculiaritiesoftheworld",
+    "more-games": "More games",
+    "games-link": "https://peculiaritiesoftheworld.blogspot.com"
 }

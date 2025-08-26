@@ -3,7 +3,14 @@
     "play" : "Jogar",
     "send" : "Enviar",
     "redirect-menu": "Menu",
+    "score": "Score",
     "playAgain" : "Jogar de novo",
     "lost-title": "Você perdeu!",
-    "lost-text": "Sua pontuação: "
+    "lost-text": "Sua pontuação: ",
+    "volumeTxt": "Volume:",
+    "save": "Salvar",
+    "youtube": "Canal do Youtube com curiosidades",
+    "youtube-link": "https://www.youtube.com/@peculiaridadesdomundo",
+    "more-games": "Mais jogos",
+    "games-link": "https://peculiaridadesdomundoblog.blogspot.com"
 }
