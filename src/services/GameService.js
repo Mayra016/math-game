@@ -1,35 +1,47 @@
 
 
-export class FreestyleModeService {
+export class GameService {
     level = 0;
     maxNum = 10;
     maxEquations = 1;
     levelEquation = "";
     playedEquations = [];
     levelResult = "";
+    time = 0;
+
+    maxNumConstant = 6;
+    maxEquationsConstant = 5;
+
+    constructor(gameMode) {
+        // Update constants based on the game mode to reuse the same logic for different modes
+        if (gameMode === "Freestyle") {
+            this.maxEquationsConstant = 5;
+            this.maxNumConstant = 6;
+        }
+        if (gameMode === "BeatTheClock") {
+            this.maxEquationsConstant = 10;
+            this.maxNumConstant = 8;
+        }
+    }
+
+    resetTime() {
+        this.time = 0;
+    }
+
+    async timmer() {
+        setTimeout(() => this.time++, 1000);
+    }
 
     updateMaxNum() {
-        if (this.level % 6 === 0) {
+        if (this.level % this.maxNumConstant === 0) {
             this.maxNum += 10;
         }    
     }
 
     updateMaxEquations() {
-        if (this.level % 5 === 0 && this.maxEquations < 5) {
+        if (this.level % this.maxEquationsConstant === 0 && this.maxEquations < 5) {
             this.maxEquations++;
         }    
-    }
-
-    setLevel() {
-        this.level++;
-    }
-
-    getLevelResult() {
-        return this.levelResult;
-    }
-
-    getEquation() {
-        return this.levelEquation;
     }
 
     generateEquation() {
@@ -127,5 +139,22 @@ export class FreestyleModeService {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
       
-         
+       
+    // Setters and getters
+
+    getTime() {
+        return this.time;
+    }
+
+    setLevel() {
+        this.level++;
+    }
+
+    getLevelResult() {
+        return this.levelResult;
+    }
+
+    getEquation() {
+        return this.levelEquation;
+    }
 }
