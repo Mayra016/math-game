@@ -282,6 +282,16 @@ button:hover {
 	font-weight: bold;
 }
 
+.menu-icon {
+	background-color: var(--yellow);
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.header-bar .menu-icon {
+	width: 40px;
+	
+}
 
   
 @media (max-width: 800px) {
