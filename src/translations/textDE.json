@@ -3,5 +3,9 @@
     "play" : "Spielen",
     "menu" : "Menu",
     "score" : "Punkte",
-    "send" : "Senden"
+    "send" : "Senden",
+    "redirect-menu": "Menu",
+    "playAgain" : "Nochmal spielen",
+    "lost-title": "Du hast verloren!",
+    "lost-text": "Deine Punkte: "
 }

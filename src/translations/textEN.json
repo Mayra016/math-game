@@ -3,5 +3,9 @@
     "play" : "Play",
     "menu" : "Menu",
     "score" : "Score",
-    "send" : "Send"
+    "send" : "Send",
+    "redirect-menu": "Menu",
+    "playAgain" : "Play again",
+    "lost-title": "You have lost!",
+    "lost-text": "Your score: "
 }

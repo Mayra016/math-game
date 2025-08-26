@@ -1,5 +1,9 @@
 {
     "equations" : "Calcule as equações para somar pontos.",
     "play" : "Jogar",
-    "send" : "Enviar"
+    "send" : "Enviar",
+    "redirect-menu": "Menu",
+    "playAgain" : "Jogar de novo",
+    "lost-title": "Você perdeu!",
+    "lost-text": "Sua pontuação: "
 }
