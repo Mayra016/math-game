@@ -1,13 +1,36 @@
 import { useTranslation } from "./LanguageProvider";
 import { GameService } from "../services/gameService";
 import { useState, useEffect, useRef } from "react";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const Game = ( {levelLifes, sendData} ) => {
+const Game = ( {levelLifes, sendData, levelScore} ) => {
     const {text} = useTranslation();
     let [gameLogic, setGameLogic] = useState(new GameService());
     const [userInput, setUserInput] = useState("");
     const [levelEquation, setLevelEquation] = useState("");
     const gameContainer = useRef(null);
+    const menuBtn = text("redirect-menu");
+    const playAgainBtn = text("playAgain");
+    const navigate = useNavigate();
+
+    function showAlert(title, message) {
+        Swal.fire({
+            title: title,
+            text: message + levelScore,
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonText: playAgainBtn,
+            cancelButtonText: menuBtn
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setGameLogic(new GameService());
+                nextLevel();               
+            } else {
+                navigate("/");
+            }
+        });
+    }
 
     function nextLevel() {
         gameLogic.generateEquation();
@@ -31,8 +54,8 @@ const Game = ( {levelLifes, sendData} ) => {
             sendData(false);
             gameContainer.current?.classList.add("shake");
             setTimeout(() => gameContainer.current?.classList.remove("shake"), 100);
-            if (levelLifes < 1) {
-
+            if (levelLifes <= 1) {
+                showAlert(text("lost-title"), text("lost-text"));
             }
         }
     }

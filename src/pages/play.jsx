@@ -23,7 +23,7 @@ const Play = () =>  {
     return(
         <div>
             <PlayersInfo lifes={lifes} score={score}></PlayersInfo>
-            <Game sendData={handleUserAnswer} levelLifes={lifes}></Game>
+            <Game sendData={handleUserAnswer} levelLifes={lifes} levelScore={score}></Game>
         </div>
     );
 }
