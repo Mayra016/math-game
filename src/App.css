@@ -4,6 +4,7 @@
 	--dark-red: rgb(128, 0, 32);
 	--light-red: rgb(205, 161, 167);
 	--yellow: rgb(247, 250, 176);
+	--light-green: rgb(165, 251, 152);
 }
 
 body {
@@ -193,6 +194,23 @@ button:hover {
 	text-align: center;
 }
 
+.win {
+	background-color: var(--light-green);
+}
+
 #equation {
 	text-align: center;
 }
+
+.shake {
+	animation: shake 0.4s ease-in-out;
+  }
+  
+  @keyframes shake {
+	0% { transform: translateX(0); }
+	25% { transform: translateX(-5px); }
+	50% { transform: translateX(5px); }
+	75% { transform: translateX(-5px); }
+	100% { transform: translateX(0); }
+  }
+  
