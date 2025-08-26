@@ -25,6 +25,7 @@ const Game = ( {levelLifes, sendData, levelScore} ) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setGameLogic(new GameService());
+                setUserInput("");
                 nextLevel();               
             } else {
                 navigate("/");
