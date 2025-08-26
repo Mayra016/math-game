@@ -60,6 +60,12 @@ h1 {
 	box-shadow: 2px 2px 2px 1px rgb(66, 1, 17, 0.3);
 }
 
+.modes {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
 .gameModes:hover {
 	transform: rotateX(-10deg);
 }
