@@ -1,5 +1,5 @@
 import PlayersInfo from "../components/playersInfo";
-import Game from "../components/game";
+import FreestyleMode from "../components/FreestyleMode";
 import { useState, useRef, useEffect } from "react";
 import music from '../assets/music.mp3';
 
@@ -32,7 +32,7 @@ const Play = () =>  {
     return(
         <div>
             <PlayersInfo lifes={lifes} score={score}></PlayersInfo>
-            <Game sendData={handleUserAnswer} levelLifes={lifes} levelScore={score}></Game>
+            <FreestyleMode sendData={handleUserAnswer} levelLifes={lifes} levelScore={score}></FreestyleMode>
             <audio ref={audioElement} src={music} autoPlay loop></audio>
         </div>
     );

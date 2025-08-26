@@ -1,12 +1,12 @@
 import { useTranslation } from "./LanguageProvider";
-import { GameService } from "../services/gameService";
+import { FreestyleModeService } from "../services/FreestyleModeService";
 import { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const Game = ( {levelLifes, sendData, levelScore} ) => {
+const FreestyleMode = ( {levelLifes, sendData, levelScore} ) => {
     const {text} = useTranslation();
-    let [gameLogic, setGameLogic] = useState(new GameService());
+    let [gameLogic, setGameLogic] = useState(new FreestyleModeService());
     const [userInput, setUserInput] = useState("");
     const [levelEquation, setLevelEquation] = useState("");
     const gameContainer = useRef(null);
@@ -24,7 +24,7 @@ const Game = ( {levelLifes, sendData, levelScore} ) => {
             cancelButtonText: menuBtn
         }).then((result) => {
             if (result.isConfirmed) {
-                setGameLogic(new GameService());
+                setGameLogic(new FreestyleModeService());
                 setUserInput("");
                 nextLevel();               
             } else {
@@ -77,4 +77,4 @@ const Game = ( {levelLifes, sendData, levelScore} ) => {
     );
 }
 
-export default Game;
+export default FreestyleMode;

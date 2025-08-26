@@ -1,6 +1,6 @@
 
 
-export class GameService {
+export class FreestyleModeService {
     level = 0;
     maxNum = 10;
     maxEquations = 1;
