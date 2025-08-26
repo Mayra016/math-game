@@ -122,8 +122,6 @@ button:hover {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between; 
-	align-items: center;    
-	padding: 0px 20px;  
 	align-items: center;   
 	padding: 30px 40px;
 }
@@ -213,4 +211,52 @@ button:hover {
 	75% { transform: translateX(-5px); }
 	100% { transform: translateX(0); }
   }
+
+/* SWEET ALERT2 */
+.swal2-popup {
+	background-color: var(--dark-red) !important;
+	border: 3px solid var(--yellow) !important;
+  }
   
+.swal2-html-container {
+	color: white !important;
+}
+
+.swal2-title {
+	color: var(--yellow);
+}
+  
+.swal2-confirm, .swal2-cancel {
+	background-color: var(--yellow) !important;
+	color: black !important;
+}
+  
+
+  
+@media (max-width: 800px) {
+	.lifes-number {
+		width: 30px;
+
+	}
+
+	.score {
+		height: 18px;
+	}
+
+	.menu-btn {
+		height: 38px;
+		width: 60px;
+	}
+
+	.players-info {
+		padding: 0px 40px;
+	}
+
+	.header-bar {
+		margin-bottom: 10px;
+	}
+
+	.header-bar img {
+		width: 50px;
+	}
+}
