@@ -19,7 +19,8 @@ function App() {
           <Routes>
             <Route path="/menu" element={<Menu></Menu>}></Route>
             <Route path="/" element={<Menu></Menu>}></Route>
-            <Route path="/play" element={<Play></Play>}></Route>
+            <Route path="/play/freestyle" element={<Play></Play>}></Route>
+            <Route path="/play/beat-the-clock" element={<Play></Play>}></Route>
             <Route path="/configurations" element={<Config></Config>}></Route>
           </Routes>
         </Router>
