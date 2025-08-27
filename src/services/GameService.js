@@ -24,12 +24,24 @@ export class GameService {
         }
     }
 
+    resetLevel() {
+        this.level = 0;
+        this.maxNum = 10;
+        this.maxEquations = 1;
+        this.levelEquation = "";
+        this.playedEquations = [];
+        this.levelResult = "";
+        this.time = 0;
+    }
+
     resetTime() {
         this.time = 0;
     }
 
     async timmer() {
-        setTimeout(() => this.time++, 1000);
+        while(this.time < 30) {
+            setTimeout(() => this.time++, 1000);
+        }
     }
 
     updateMaxNum() {
@@ -122,7 +134,7 @@ export class GameService {
     generateMultiplicationEquation() {
         const a = this.getRandomInt(1, this.maxNum);
         const b = this.getRandomInt(1, this.maxNum);
-        if(this.updateEquation(`${a} × ${b}`, a * b) == false) {
+        if(this.updateEquation(`${a} × ${b}`, a * b) === false) {
             this.generateEquation();
         }
     }
@@ -130,7 +142,7 @@ export class GameService {
     generateDivisionEquation() {
         const a = this.getRandomInt(1, this.maxNum);
         const b = this.getRandomInt(1, this.maxNum);
-        if (this.updateEquation(`${a} / ${b}`, a / b) == false) {
+        if (this.updateEquation(`${a} / ${b}`, a / b) === false) {
             this.generateEquation();
         }
     }  
@@ -151,7 +163,7 @@ export class GameService {
     }
 
     getLevelResult() {
-        return this.levelResult;
+        return String(this.levelResult);
     }
 
     getEquation() {
