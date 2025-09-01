@@ -18,6 +18,7 @@ const Play = () =>  {
         if (value === "reset") {
             setScore(0);
             setLifes(3);
+            return;
         }
 
         if (value === true) {
