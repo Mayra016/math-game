@@ -316,6 +316,27 @@ button:hover {
 .my-swal {
 	white-space: pre-line;
 }
+
+@media (max-width: 350px) {
+	.players-info {
+		padding: 0px 40px;
+		margin: auto;
+		gap: 10px;
+		text-align: center;
+		margin-left: -10px;
+	}	
+}
+
+@media (max-width: 400px) {
+	.players-info {
+		margin-left: -1%;
+	}
+
+	.equations {
+		display: flex;
+		gap: 10px;
+	}
+}	
   
 @media (max-width: 800px) {
 	.lifes-number {
@@ -363,5 +384,6 @@ button:hover {
 		color: var(--yellow);
 		font-size: 30px;
 	}
+	
 	
 }
