@@ -299,6 +299,23 @@ button:hover {
 	
 }
 
+
+/* GREATER THAN  GAME MODE */
+.equations button {
+	width: 40%;
+	height: 300px;
+	color: var(--yellow);
+	font-size: 30px;
+}
+
+.equations {
+	display: flex;
+	gap: 30px;
+}
+
+.my-swal {
+	white-space: pre-line;
+}
   
 @media (max-width: 800px) {
 	.lifes-number {
@@ -334,6 +351,17 @@ button:hover {
 
 	.container {
 		width: 70%;
+	}
+
+	.equations {
+		flex-direction: column;
+	}
+
+	.equations button {
+		width: 90%;
+		height: 200px;
+		color: var(--yellow);
+		font-size: 30px;
 	}
 	
 }
