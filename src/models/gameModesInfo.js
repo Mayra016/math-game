@@ -18,5 +18,9 @@ export default class GameModesInfo {
         if (newName === "One Minute") {
             this.link = "/play/one-minute";
         }
+        if (newName === "Greater Than") {
+            this.link = "/play/greater-than";
+        }
+
     }
 }
