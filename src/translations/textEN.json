@@ -18,5 +18,6 @@
     "one-description": "How many equations can you solve within 1 minute?",
     "lost-one-text": "You have solved $ equations and earned $ points",
     "one-minute-lost-title": "The time is over",
-    "greater-description": "Choose the equation with the greater result"
+    "greater-description": "Choose the equation with the greater result",
+    "best-score": "\nYour best score was: "
 }

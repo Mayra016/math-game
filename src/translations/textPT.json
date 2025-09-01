@@ -17,5 +17,6 @@
     "one-description": "Quantas equações você consegue resolver em 1 minutos?",
     "lost-one-text": "Você resolveu $ equações e ganhou $ pontos",
     "one-minute-lost-title": "O tempo acabou",
-    "greater-description": "Selecione a equação que tem o maior resultado"
+    "greater-description": "Selecione a equação que tem o maior resultado",
+    "best-score": "\nSua melhor pontuação foi: "
 }
