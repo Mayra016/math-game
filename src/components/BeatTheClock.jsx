@@ -7,7 +7,6 @@ import playAudio from "../utils/playAudio";
 import rightAnswer from "../assets/right-answer.mp3";
 import ProgressBar from "./progressBar";
 
-
 const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     const navigate = useNavigate();
     const {text} = useTranslation();
@@ -15,33 +14,52 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     const [timeLeft, setTimeLeft] = useState(30);
     const [userInput, setUserInput] = useState("");
     const [timeWidth, setTimeWidth] = useState(100);
-    let [gameLogic, setGameLogic] = useState(new GameService("BeatTheClock"));
-    let [levelEquation, setLevelEquation] = useState("");
-    let result = "";
+    const [gameOver, setGameOver] = useState(false);
+    const [showGameOverAlert, setShowGameOverAlert] = useState(false);
+    const [gameLogic] = useState(() => new GameService("BeatTheClock"));
+    const [levelEquation, setLevelEquation] = useState("");
+    const [result, setResult] = useState("");
 
     const gameContainer = useRef(null);
-    const timerBar = useRef(null);
     const audioEffects = useRef(null);
+    const scoreRef = useRef(beatScore);
 
     const menuBtn = text("redirect-menu");
     const playAgainBtn = text("playAgain");
-    
 
+    // Update ref when score changes
+    useEffect(() => {
+        scoreRef.current = beatScore;
+    }, [beatScore]);
 
     function showAlert(title, message) {
+        // Set flag to indicate alert is showing
+        setShowGameOverAlert(true);
+        
         Swal.fire({
             title: title,
-            text: message + beatScore,
+            text: message + scoreRef.current, // Use ref instead of prop
             icon: "error",
             showCancelButton: true,
             confirmButtonText: playAgainBtn,
-            cancelButtonText: menuBtn
+            cancelButtonText: menuBtn,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            focusConfirm: true,
+            backdrop: true,
+            customClass: {
+                container: 'swal-overlay'
+            }
         }).then((result) => {
+            setShowGameOverAlert(false);
             if (result.isConfirmed) {
+                setGameOver(false);
                 gameLogic.resetLevel();
+                sendData("reset");
                 setUserInput("");
                 nextLevel();               
-            } else {
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
                 navigate("/");
             }
         });
@@ -50,18 +68,22 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     function nextLevel() {
         setUserInput("");
         gameLogic.generateEquation();
-        result = gameLogic.getLevelResult();
+        const newResult = gameLogic.getLevelResult();
+        setResult(newResult);
         setLevelEquation(gameLogic.getEquation());
         gameLogic.resetTime();
         startTimer();
-        console.log(gameLogic.getLevelResult());
+        console.log(newResult);
     }
 
     function checkAnswer() {
+        // Don't process answers if alert is showing
+        if (showGameOverAlert || gameOver) return;
+        
         console.log(userInput);
-        console.log(gameLogic.getLevelResult());
+        console.log(result);
 
-        if (String(userInput) === gameLogic.getLevelResult() && String(userInput) != "") {
+        if (String(userInput) === result && String(userInput) !== "") {
             gameContainer.current?.classList.add("win");
             sendData(true);
             setTimeout(() => gameContainer.current?.classList.remove("win"), 500); 
@@ -74,8 +96,9 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
             gameContainer.current?.classList.add("shake");
             sendData(false);
             console.log("falsch");
-            setTimeout(() => gameContainer.current?.classList.remove("shake"), 100);
+            setTimeout(() => gameContainer.current?.classList.remove("shake"), 200);
             if (beatLifes <= 1) {
+                setGameOver(true);
                 playAudio("lost", audioEffects);
                 showAlert(text("lost-title"), text("lost-text"));
             } else {
@@ -86,25 +109,34 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
 
     useEffect(() => {
         gameLogic.generateEquation();
-        result = gameLogic.getLevelResult();
+        const initialResult = gameLogic.getLevelResult();
+        setResult(initialResult);
         setLevelEquation(gameLogic.getEquation());
         
         startTimer();
-        console.log(result);
+        console.log(initialResult);
+        
+        return () => clearInterval(timerRef.current);
     }, [])
     
     function startTimer() {
         clearInterval(timerRef.current);
-        setTimeLeft(31); 
-        setTimeWidth(110);
+        setTimeLeft(30); 
+        setTimeWidth(100);
+        setGameOver(false);
+        setShowGameOverAlert(false);
         
         timerRef.current = setInterval(() => {
             setTimeLeft(prev => {
                 const next = +(prev - 0.1).toFixed(1);
-                if (next <= 0) {
+                if (next <= 0 && !gameOver && !showGameOverAlert) {
                     clearInterval(timerRef.current);
+                    setGameOver(true);
                     playAudio("lost", audioEffects);
-                    showAlert(text("lost-title"), text("lost-text"));
+                    // Use setTimeout to ensure state updates are processed
+                    setTimeout(() => {
+                        showAlert(text("lost-title"), text("lost-text"));
+                    }, 100);
                     return 0;
                 }
                 setTimeWidth((next / 30) * 100);
@@ -113,17 +145,31 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
         }, 100);
     }
     
-    
-    
-    
-
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && !showGameOverAlert && !gameOver) {
+            checkAnswer();
+        }
+    };
 
     return(
-        <div ref={gameContainer} className="game-level"style={{textAlign: "center"}} >
+        <div ref={gameContainer} className="game-level" style={{textAlign: "center"}} >
             <ProgressBar value={timeWidth}></ProgressBar>
             <h3 id="equation" >{levelEquation}</h3>
-            <input value={userInput} onChange={(e) => setUserInput(e.target.value)} className="playerAnswer" type="number"></input>
-            <button onClick={() => checkAnswer()}>{text('send')}</button>
+            <input 
+                value={userInput} 
+                onChange={(e) => setUserInput(e.target.value)} 
+                onKeyPress={handleKeyPress} 
+                className="playerAnswer" 
+                type="number"
+                autoFocus
+                disabled={showGameOverAlert || gameOver}
+            />
+            <button 
+                onClick={() => checkAnswer()}
+                disabled={showGameOverAlert || gameOver}
+            >
+                {text('send')}
+            </button>
             <audio ref={audioEffects} src={rightAnswer}></audio>
         </div>
     );
