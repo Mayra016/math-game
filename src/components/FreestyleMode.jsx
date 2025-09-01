@@ -7,6 +7,7 @@ import lostAudio from "../assets/lost.mp3";
 import winAudio from "../assets/right-answer.mp3";
 import wrongAudio from "../assets/wrong-answer.mp3";
 import playAudio from "../utils/playAudio";
+import updateBestScore from '../utils/bestScore';
 
 const FreestyleMode = ( {levelLifes, sendData, levelScore} ) => {
     const {text} = useTranslation();
@@ -15,18 +16,30 @@ const FreestyleMode = ( {levelLifes, sendData, levelScore} ) => {
     const [levelEquation, setLevelEquation] = useState("");
     const gameContainer = useRef(null);
     const audioEffects = useRef(null);
+    const scoreRef = useRef(null);
     const menuBtn = text("redirect-menu");
     const playAgainBtn = text("playAgain");
     const navigate = useNavigate();
 
+    // Update ref when score changes
+    useEffect(() => {
+        scoreRef.current = levelScore;
+    }, [levelScore]);    
+
     function showAlert(title, message) {
+        let bestScore = updateBestScore(scoreRef.current, "Freestyle");
+        message += scoreRef.current + "\n" + text("best-score") + bestScore;
+                
         Swal.fire({
             title: title,
-            text: message + levelScore,
+            text: message,
             icon: "error",
             showCancelButton: true,
             confirmButtonText: playAgainBtn,
-            cancelButtonText: menuBtn
+            cancelButtonText: menuBtn,
+            customClass: {
+                popup: 'my-swal'
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 gameLogic.resetLevel();

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import playAudio from "../utils/playAudio";
 import rightAnswer from "../assets/right-answer.mp3";
 import ProgressBar from "./progressBar";
+import updateBestScore from '../utils/bestScore';
 
 const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     const navigate = useNavigate();
@@ -35,10 +36,12 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     function showAlert(title, message) {
         // Set flag to indicate alert is showing
         setShowGameOverAlert(true);
+        let bestScore = updateBestScore(scoreRef.current, "BeatTheClock");
+        message += scoreRef.current + "\n" + text("best-score") + bestScore;
         
         Swal.fire({
             title: title,
-            text: message + scoreRef.current, // Use ref instead of prop
+            text: message, 
             icon: "error",
             showCancelButton: true,
             confirmButtonText: playAgainBtn,
@@ -49,7 +52,8 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
             focusConfirm: true,
             backdrop: true,
             customClass: {
-                container: 'swal-overlay'
+                container: 'swal-overlay',
+                popup: 'my-swal'
             }
         }).then((result) => {
             setShowGameOverAlert(false);

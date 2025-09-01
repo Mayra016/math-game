@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import playAudio from '../utils/playAudio';
 import ProgressBar from './progressBar';
 import rightAnswer from "../assets/right-answer.mp3";
+import updateBestScore from '../utils/bestScore';
 
 const OneMinute = ({sendData, oneLives, oneScore}) => {
     const {text} = useTranslation();
@@ -39,6 +40,9 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
         message = message.replaceAll("$", () => replacements[i++]);
         console.log("Score alert: " + finalScore);
         console.log("Message: " + message);
+        let bestScore = updateBestScore(scoreRef.current, "OneMinute");
+        message += "\n" + text("best-score") + bestScore;
+                
         
         setShowGameOverAlert(true);
         
@@ -55,7 +59,8 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
             focusConfirm: true,
             backdrop: true,
             customClass: {
-                container: 'swal-overlay'
+                container: 'swal-overlay',
+                popup: 'my-swal'
             }
         }).then((result) => {
             setShowGameOverAlert(false);
@@ -111,7 +116,7 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
             if (oneLives <= 1) {
                 playAudio("lost", audioEffects);
                 setGameOver(true);
-                showAlert(text("lost-title"), text("lost-text"), false);
+                showAlert(text("lost-title"), text("lost-one-text"), false);
             } else {     
                 sendData(false);        
                 playAudio("wrong", audioEffects);    
