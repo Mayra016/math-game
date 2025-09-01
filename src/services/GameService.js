@@ -18,7 +18,7 @@ export class GameService {
             this.maxEquationsConstant = 5;
             this.maxNumConstant = 6;
         }
-        if (gameMode === "BeatTheClock") {
+        if (gameMode === "BeatTheClock" || gameMode === "OneMinute" ) {
             this.maxEquationsConstant = 10;
             this.maxNumConstant = 8;
         }
@@ -40,7 +40,8 @@ export class GameService {
 
     async timmer() {
         while(this.time < 30) {
-            setTimeout(() => this.time++, 1000);
+            this.time++;
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
     }
 
