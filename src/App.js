@@ -22,6 +22,7 @@ function App() {
             <Route path="/play/freestyle" element={<Play></Play>}></Route>
             <Route path="/play/beat-the-clock" element={<Play></Play>}></Route>
             <Route path="/play/one-minute" element={<Play></Play>}></Route>
+            <Route path="/play/greater-than" element={<Play></Play>}></Route>
             <Route path="/configurations" element={<Config></Config>}></Route>
           </Routes>
         </Router>
