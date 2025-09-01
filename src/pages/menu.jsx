@@ -14,7 +14,7 @@ const Menu = () => {
     const volume = localStorage.getItem("vol") || 50;
     const audioElement = useRef(null);
     const gameModes = [new GameModesInfo("Freestyle", text("equations"), freeStyleImg), new GameModesInfo("Beat The Clock", text("clock-description"), timmerIcon),
-                       new GameModesInfo("One Minute", text("one-description"), oneMinuteIcon)
+                       new GameModesInfo("One Minute", text("one-description"), oneMinuteIcon), new GameModesInfo("Greater Than", text("greater-description"), greaterThanIcon)
     ];
 
     useEffect(() => {
