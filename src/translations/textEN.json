@@ -14,5 +14,9 @@
     "youtube-link": "https://www.youtube.com/@peculiaritiesoftheworld",
     "more-games": "More games",
     "games-link": "https://peculiaritiesoftheworld.blogspot.com",
-    "clock-description": "Solve the equations before time runs out"
+    "clock-description": "Solve the equations before time runs out",
+    "one-description": "How many equations can you solve within 1 minute?",
+    "lost-one-text": "You have solved $ equations and earned $ points",
+    "one-minute-lost-title": "The time is over",
+    "greater-description": "Choose the equation with the greater result"
 }

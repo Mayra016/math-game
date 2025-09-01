@@ -14,5 +14,9 @@
     "youtube-link": "https://www.youtube.com/@peculiaridadesdelmundo",
     "more-games": "Más juegos",
     "games-link": "https://peculiaridadesdelmundo.blogspot.com",
-    "clock-description": "Calcula las ecuaciones antes de que se termine el tiempo"
+    "clock-description": "Calcula las ecuaciones antes de que se termine el tiempo",
+    "one-description": "¿Cuántas ecuaciones puedes resolver en 1 minuto?",
+    "lost-one-text": "Has resuelto $ ecuaciones y ganado $ puntos",
+    "one-minute-lost-title": "El tiempo se ha acabado",
+    "greater-description": "Selecciona la ecuación que tiene el mayor resultado"
 }
