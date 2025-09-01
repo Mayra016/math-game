@@ -15,5 +15,8 @@ export default class GameModesInfo {
         if (newName === "Beat The Clock") {
             this.link = "/play/beat-the-clock";
         }
+        if (newName === "One Minute") {
+            this.link = "/play/one-minute";
+        }
     }
 }
