@@ -1,7 +1,6 @@
 import PlayersInfo from "../components/playersInfo";
 import FreestyleMode from "../components/FreestyleMode";
 import { useState, useRef, useEffect } from "react";
-import music from '../assets/music.mp3';
 import BeatTheClock from "../components/BeatTheClock";
 import OneMinute from "../components/OneMinute";
 import { useLocation } from "react-router-dom";
@@ -43,7 +42,7 @@ const Play = () =>  {
             {location.pathname.endsWith("/play/beat-the-clock") && (<BeatTheClock sendData={handleUserAnswer} beatLifes={lifes} beatScore={score}></BeatTheClock>)}
             {location.pathname.endsWith("/play/one-minute") && (<OneMinute sendData={handleUserAnswer} oneLives={lifes} oneScore={score}></OneMinute>)}
             {location.pathname.endsWith("/play/greater-than") && (<GreaterThan sendData={handleUserAnswer} greaterLifes={lifes} greaterScore={score}></GreaterThan>)}
-            <audio ref={audioElement} src={music} autoPlay loop></audio>
+            <audio ref={audioElement} src="assets/music.mp3" autoPlay loop></audio>
         </div>
     );
 }

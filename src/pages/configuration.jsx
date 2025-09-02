@@ -1,9 +1,6 @@
 import { useTranslation } from "../components/LanguageProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import music from '../assets/music.mp3';
-import gameIcon from '../assets/game-icon.png';
-import youtubeIcon from '../assets/youtube-logo.png'
 
 
 const Config = () => {
@@ -41,16 +38,16 @@ const Config = () => {
             </div>
             <div className="infos">
                 <div className="games" onClick={() => window.open(text('games-link'))}>
-                    <img src={gameIcon} alt="game icon"></img>
+                    <img src='assets/game-icon.png' alt="game icon"></img>
                     <p>{text("more-games")}</p>
                 </div>
                 <div className="youtube" onClick={() => window.open(text('youtube-link'))}>
-                    <img src={youtubeIcon} alt="youtube icon"></img>
+                    <img src='assets/youtube-logo.png' alt="youtube icon"></img>
                     <p>{text("youtube")}</p>
                 </div>
             </div>
 
-            <audio ref={audioElement} src={music} autoPlay loop></audio>
+            <audio ref={audioElement} src='assets/music.mp3' autoPlay loop></audio>
 
             <button className="button" onClick={() => navigate("/menu")}>
                 {text("save")}

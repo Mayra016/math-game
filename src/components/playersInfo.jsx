@@ -1,6 +1,5 @@
 import { redirect } from "../utils/redirect";
 import { useTranslation } from "./LanguageProvider";
-import heart from '../assets/heart.png';
 
 const PlayersInfo = ({score, lifes}) => {
     const {text} = useTranslation();
@@ -14,7 +13,7 @@ const PlayersInfo = ({score, lifes}) => {
             </div>
             <div className="lifes">
                 {[...Array(lifes)].map((_, index) => (
-                    <img className="lifes-number" src={heart}></img>
+                    <img className="lifes-number" src='assets/heart.png'></img>
                 ))}
             </div>
             <div className="score">

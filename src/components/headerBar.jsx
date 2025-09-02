@@ -1,7 +1,5 @@
 import LanguageSelect from "./languageSelect";
 import { useNavigate } from "react-router-dom";
-import { redirect } from "../utils/redirect";
-import menuIcon from '../assets/menu-icon.png';
 import { useLocation } from "react-router-dom";
 
 const HeaderBar = () => {
@@ -24,7 +22,7 @@ const HeaderBar = () => {
                 <img class="menu-icon"
                     alt="menu icon" 
                     onClick={() => navigate('/menu')} 
-                    src={menuIcon}
+                    src='assets/menu-icon.png'
                 />
             )}
         </div>

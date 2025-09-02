@@ -5,7 +5,6 @@ import { GameService } from '../services/GameService';
 import Swal from "sweetalert2";
 import playAudio from '../utils/playAudio';
 import ProgressBar from './progressBar';
-import rightAnswer from "../assets/right-answer.mp3";
 import updateBestScore from '../utils/bestScore';
 
 const OneMinute = ({sendData, oneLives, oneScore}) => {
@@ -194,7 +193,7 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
             <button onClick={() => checkAnswer()} disabled={showGameOverAlert || gameOver}>
                 {text('send')}
             </button>
-            <audio ref={audioEffects} src={rightAnswer}></audio>
+            <audio ref={audioEffects} src="assets/right-answer.mp3"></audio>
         </div>
     );
 }

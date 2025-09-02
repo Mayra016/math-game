@@ -1,7 +1,4 @@
-import winAudio from "../assets/right-answer.mp3";
-import wrongAudio from "../assets/wrong-answer.mp3";
-import lostAudio from "../assets/lost.mp3";
-import timmerAudio from '../assets/timmer-effect.mp3';
+
 
 let timerAudio = null;
 let isTimer = false;
@@ -10,19 +7,18 @@ export default function playAudio(effect) {
     let audio;
     
 
-    if (effect === "win") audio = new Audio(winAudio);
-    if (effect === "wrong") audio = new Audio(wrongAudio);
-    if (effect === "lost") audio = new Audio(lostAudio);
+    if (effect === "win") audio = new Audio("assets/right-answer.mp3");
+    if (effect === "wrong") audio = new Audio("assets/wrong-answer.mp3");
+    if (effect === "lost") audio = new Audio("assets/lost.mp3");
     
     if (effect === "timmer") {
         if (isTimer) {
-            console.log("PAUSA DE TIMER");
             timerAudio.pause();
             
             timerAudio.currentTime = 0;
             isTimer = false;
         } else {
-            timerAudio = new Audio(timmerAudio);
+            timerAudio = new Audio('assets/timmer-effect.mp3');
             timerAudio.play();
             isTimer = true;
         }   

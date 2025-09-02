@@ -3,9 +3,6 @@ import { GameService } from "../services/GameService";
 import { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import lostAudio from "../assets/lost.mp3";
-import winAudio from "../assets/right-answer.mp3";
-import wrongAudio from "../assets/wrong-answer.mp3";
 import playAudio from "../utils/playAudio";
 import updateBestScore from '../utils/bestScore';
 

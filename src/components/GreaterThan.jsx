@@ -2,7 +2,6 @@ import { useTranslation } from './LanguageProvider';
 import { GameService } from '../services/GameService';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import rightAnswer from '../assets/right-answer.mp3';
 import { useState, useRef, useEffect } from 'react';
 import playAudio from '../utils/playAudio';
 import ProgressBar from './progressBar';
@@ -224,7 +223,7 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
                     {secondEquation}
                 </button>
             </div>
-            <audio ref={audioEffects} src={rightAnswer}></audio>
+            <audio ref={audioEffects} src='assets/right-answer.mp3'></audio>
         </div>   
     );
 };

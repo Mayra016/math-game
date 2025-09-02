@@ -4,7 +4,6 @@ import { useTranslation } from "./LanguageProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import playAudio from "../utils/playAudio";
-import rightAnswer from "../assets/right-answer.mp3";
 import ProgressBar from "./progressBar";
 import updateBestScore from '../utils/bestScore';
 
@@ -79,16 +78,12 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
         setLevelEquation(gameLogic.getEquation());
         gameLogic.resetTime();
         startTimer();
-        console.log(newResult);
     }
 
     function checkAnswer() {
         playAudio("pause");
         // Don't process answers if alert is showing
         if (showGameOverAlert || gameOver) return;
-        
-        console.log(userInput);
-        console.log(result);
 
         if (String(userInput) === result && String(userInput) !== "") {
             gameContainer.current?.classList.add("win");
@@ -102,7 +97,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
         } else {
             gameContainer.current?.classList.add("shake");
             sendData(false);
-            console.log("falsch");
+
             setTimeout(() => gameContainer.current?.classList.remove("shake"), 200);
             if (beatLifes <= 1) {
                 setGameOver(true);
@@ -182,7 +177,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
             >
                 {text('send')}
             </button>
-            <audio ref={audioEffects} src={rightAnswer}></audio>
+            <audio ref={audioEffects} src="assets/right-answer.mp3"></audio>
         </div>
     );
 };
