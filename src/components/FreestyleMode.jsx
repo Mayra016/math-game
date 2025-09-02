@@ -52,13 +52,11 @@ const FreestyleMode = ( {levelLifes, sendData, levelScore} ) => {
     function nextLevel() {
         gameLogic.generateEquation();
         setLevelEquation(gameLogic.getEquation());
-        console.log(gameLogic.getLevelResult());
     }
 
     function checkAnswer() { 
 
         if (userInput === String(gameLogic.getLevelResult()) && String(userInput) != "") {
-            console.log("Correct");
             gameContainer.current?.classList.add("win");
             sendData(true);
             setTimeout(() => gameContainer.current?.classList.remove("win"), 500);

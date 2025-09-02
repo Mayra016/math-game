@@ -116,7 +116,6 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
         setLevelEquation(gameLogic.getEquation());
         
         startTimer();
-        console.log(initialResult);
         
         return () => clearInterval(timerRef.current);
     }, [])

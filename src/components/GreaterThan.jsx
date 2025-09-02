@@ -46,7 +46,6 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
         message = message.replaceAll("$", () => replacements[i++]);
         let bestScore = updateBestScore(finalScore, "GreaterThan");
 
-        console.log(bestScore.text);
         message += ".\n" + text("best-score") + String(bestScore);
         
         Swal.fire({
@@ -94,7 +93,6 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
         
         gameLogic.resetTime();
         startTimer();
-        console.log("left: " + firstResult + " right: " + secondResult);
     }
     
     function checkAnswer(userAnswer) {
@@ -106,8 +104,7 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
         let isCorrect = (userAnswer === firstResult && firstResult >= secondResult) || 
                        (userAnswer === secondResult && secondResult >= firstResult);
         
-        console.log("check answer | left: " + firstResult + " right: " + secondResult + "user answer: " + userAnswer + "isCorrect : " + isCorrect);
-        
+  
         if (isCorrect || firstResult === secondResult) {
             gameContainer.current?.classList.add("win");
             sendData(true);
@@ -120,7 +117,6 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
         } else {
             gameContainer.current?.classList.add("shake");
             sendData(false);
-            console.log("false");
             setTimeout(() => gameContainer.current?.classList.remove("shake"), 200);
             
             if (greaterLifes <= 1) {
@@ -175,7 +171,7 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
                     // Clear the timer immediately
                     clearInterval(timerRef.current);
                     timerRef.current = null;
-                    console.log("GREATER LIFES : " + lifesRef.current);
+
                     if (Number(lifesRef.current) <= 1) {
                         // Game over - no lives left
                         sendData(false);
@@ -189,7 +185,6 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
                     } else {
                         // Deduct one life
                         sendData(false);
-                        console.log("Time expired - life deducted");
                         playAudio("wrong", audioEffects);
                         nextLevel();
                         return 0;
