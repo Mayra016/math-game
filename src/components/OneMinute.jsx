@@ -38,8 +38,6 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
         let replacements = [finalScore / 10, finalScore];
         let i = 0;
         message = message.replaceAll("$", () => replacements[i++]);
-        console.log("Score alert: " + finalScore);
-        console.log("Message: " + message);
         let bestScore = updateBestScore(scoreRef.current, "OneMinute");
         message += "\n" + text("best-score") + bestScore;
                 
@@ -90,17 +88,11 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
         setResult(newResult);
         setLevelEquation(gameLogic.getEquation());
         gameLogic.resetTime();
-        
-        console.log(newResult);
     }
     
     function checkAnswer() {
         playAudio("pause");
         if (showGameOverAlert || gameOver) return;
-        
-        console.log(userInput);
-        console.log(result);
-        console.log("Score: " + oneScore);
         
         if (String(userInput) === result && String(userInput) !== "") {
             gameContainer.current?.classList.add("win");
@@ -113,7 +105,6 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
             nextLevel();
         } else {
             gameContainer.current?.classList.add("shake");
-            console.log("falsch");
             setTimeout(() => gameContainer.current?.classList.remove("shake"), 200);
             if (oneLives <= 1) {
                 playAudio("lost", audioEffects);
@@ -133,7 +124,6 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
         setLevelEquation(gameLogic.getEquation());
         
         startTimer();
-        console.log(initialResult);
         
         return () => {
             clearInterval(timerRef.current);
