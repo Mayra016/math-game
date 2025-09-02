@@ -19,5 +19,9 @@
     "lost-one-text": "You have solved $ equations and earned $ points",
     "one-minute-lost-title": "The time is over",
     "greater-description": "Choose the equation with the greater result",
-    "best-score": "\nYour best score was: "
+    "best-score": "\nYour best score was: ",
+    "beattheclock-title": "Beat the clock",
+    "freestyle-title": "Freestyle",
+    "greaterthan-title": "Greater than",
+    "oneminute-title": "One Minute"
 }

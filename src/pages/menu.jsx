@@ -7,14 +7,19 @@ import freeStyleImg from '../assets/freestyle-icon.png';
 import timmerIcon from '../assets/timmer-icon.png';
 import oneMinuteIcon from '../assets/one-minute-icon.png';
 import greaterThanIcon from '../assets/greaterThanIcon.png';
-
+/*
+    "beattheclock-title": "Contra o tempo",
+    "freestyle-title": "Estilo livre",
+    "greaterthan-title": "Maior que",
+    "oneminute-title": "Um minuto"
+    */
 
 const Menu = () => {
     const {text} = useTranslation();
     const volume = localStorage.getItem("vol") || 50;
     const audioElement = useRef(null);
-    const gameModes = [new GameModesInfo("Freestyle", text("equations"), freeStyleImg), new GameModesInfo("Beat The Clock", text("clock-description"), timmerIcon),
-                       new GameModesInfo("One Minute", text("one-description"), oneMinuteIcon), new GameModesInfo("Greater Than", text("greater-description"), greaterThanIcon)
+    const gameModes = [new GameModesInfo(text("freestyle-title"), text("equations"), freeStyleImg), new GameModesInfo(text("beattheclock-title"), text("clock-description"), timmerIcon),
+                       new GameModesInfo(text("oneminute-title"), text("one-description"), oneMinuteIcon), new GameModesInfo(text("greaterthan-title"), text("greater-description"), greaterThanIcon)
     ];
 
     useEffect(() => {

@@ -18,5 +18,9 @@
     "lost-one-text": "Você resolveu $ equações e ganhou $ pontos",
     "one-minute-lost-title": "O tempo acabou",
     "greater-description": "Selecione a equação que tem o maior resultado",
-    "best-score": "\nSua melhor pontuação foi: "
+    "best-score": "\nSua melhor pontuação foi: ",
+    "beattheclock-title": "Contra o tempo",
+    "freestyle-title": "Estilo livre",
+    "greaterthan-title": "Maior que",
+    "oneminute-title": "Um minuto"
 }
