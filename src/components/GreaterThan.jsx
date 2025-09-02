@@ -64,11 +64,13 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
             }
         }).then((result) => {
             setShowGameOverAlert(false);
-            
+            playAudio("pause");
             if (result.isConfirmed) {
+                playAudio("pauseAudio");
                 resetGame();
             } else if (result.dismiss === Swal.DismissReason.cancel) {
-                navigate("/menu");
+                playAudio("pauseAudio");
+                navigate("/");
             }
         });
     }

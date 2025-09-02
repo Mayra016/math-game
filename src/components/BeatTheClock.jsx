@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { GameService } from "../services/GameService";
 import { useTranslation } from "./LanguageProvider";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import playAudio from "../utils/playAudio";
@@ -9,6 +10,7 @@ import updateBestScore from '../utils/bestScore';
 
 const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const {text} = useTranslation();
     const timerRef = useRef(null);
     const [timeLeft, setTimeLeft] = useState(30);
@@ -65,6 +67,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
                 setUserInput("");
                 nextLevel();               
             } else if (result.dismiss === Swal.DismissReason.cancel) {
+                playAudio("pauseAudio");
                 navigate("/");
             }
         });
@@ -89,7 +92,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
             gameContainer.current?.classList.add("win");
             sendData(true);
             setTimeout(() => gameContainer.current?.classList.remove("win"), 500); 
-            playAudio("win", audioEffects);
+            playAudio("win");
             gameLogic.setLevel();
             gameLogic.updateMaxNum();
             gameLogic.updateMaxEquations();
@@ -101,10 +104,10 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
             setTimeout(() => gameContainer.current?.classList.remove("shake"), 200);
             if (beatLifes <= 1) {
                 setGameOver(true);
-                playAudio("lost", audioEffects);
+                playAudio("lost");
                 showAlert(text("lost-title"), text("lost-text"));
             } else {
-                playAudio("wrong", audioEffects);    
+                playAudio("wrong");    
             }
         }
     }
@@ -138,7 +141,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
                 if (next <= 0 && !gameOver && !showGameOverAlert) {
                     clearInterval(timerRef.current);
                     setGameOver(true);
-                    playAudio("lost", audioEffects);
+                    playAudio("lost");
                     // Use setTimeout to ensure state updates are processed
                     setTimeout(() => {
                         showAlert(text("lost-title"), text("lost-text"));

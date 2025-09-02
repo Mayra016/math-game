@@ -42,7 +42,7 @@ const Play = () =>  {
             {location.pathname.endsWith("/play/beat-the-clock") && (<BeatTheClock sendData={handleUserAnswer} beatLifes={lifes} beatScore={score}></BeatTheClock>)}
             {location.pathname.endsWith("/play/one-minute") && (<OneMinute sendData={handleUserAnswer} oneLives={lifes} oneScore={score}></OneMinute>)}
             {location.pathname.endsWith("/play/greater-than") && (<GreaterThan sendData={handleUserAnswer} greaterLifes={lifes} greaterScore={score}></GreaterThan>)}
-            <audio ref={audioElement} src="assets/music.mp3" autoPlay loop></audio>
+            <audio id="background-music" ref={audioElement} src="assets/music.mp3" autoPlay loop></audio>
         </div>
     );
 }

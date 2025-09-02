@@ -62,10 +62,12 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
             }
         }).then((result) => {
             setShowGameOverAlert(false);
-            
+            playAudio("pause");
             if (result.isConfirmed) {
+                playAudio("pauseAudio");
                 resetGame();
             } else if (result.dismiss === Swal.DismissReason.cancel) {
+                playAudio("pauseAudio");
                 navigate("/");
             }
         });

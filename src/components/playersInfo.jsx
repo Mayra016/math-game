@@ -1,14 +1,22 @@
+import playAudio from "../utils/playAudio";
 import { redirect } from "../utils/redirect";
 import { useTranslation } from "./LanguageProvider";
+import { useNavigate } from 'react-router-dom';
 
 const PlayersInfo = ({score, lifes}) => {
     const {text} = useTranslation();
+    const navigate = useNavigate();
+
+    function redirect(route) {
+        playAudio("pauseAudio");
+        navigate(route);
+    }
 
     return(
         <div className="players-info">
             <div>
-                <button className="menu-btn" onClick={() => redirect('/menu')}>
-                    <img className="menu-logo" src="https://img.icons8.com/?size=100&id=36389&format=png&color=000000" alt="menu logo" />
+                <button className="menu-btn" onClick={() => redirect('/')}>
+                    <img className="menu-logo" src="assets/menu-icon.png" alt="menu logo" />
                 </button>
             </div>
             <div className="lifes">

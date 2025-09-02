@@ -25,6 +25,7 @@ export class GameService {
         if (gameMode === "MemorizeCalculate") {
             this.maxNumConstant = 8;
             this.maxEquationsConstant = 1;
+            this.maxEquations = 0;
         }
 
     }

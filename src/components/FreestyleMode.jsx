@@ -44,6 +44,7 @@ const FreestyleMode = ( {levelLifes, sendData, levelScore} ) => {
                 setUserInput("");
                 nextLevel();               
             } else {
+                playAudio("pauseAudio");
                 navigate("/");
             }
         });
