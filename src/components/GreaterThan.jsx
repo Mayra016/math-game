@@ -27,6 +27,7 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
     const timerRef = useRef(null);
     const scoreRef = useRef(greaterScore);
     const lifesRef = useRef(greaterLifes);
+    let timeAudioRef = true;
     
     const menuBtn = text("redirect-menu");
     const playAgainBtn = text("playAgain");
@@ -76,6 +77,7 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
     
     function resetGame() {
         gameLogic.resetLevel();
+        playAudio("pause");
         sendData("reset");
         setGameOver(false);
         nextLevel();
@@ -97,6 +99,9 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
     }
     
     function checkAnswer(userAnswer) {
+        
+        playAudio("pause");
+
         if (showGameOverAlert || gameOver) return;
         
         let isCorrect = (userAnswer === firstResult && firstResult >= secondResult) || 
@@ -128,6 +133,7 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
                 nextLevel();
             }
         }
+        
         startTimer();
     }
     
@@ -158,6 +164,11 @@ const GreaterThan = ({sendData, greaterLifes, greaterScore}) => {
                 if (isHandlingTimeUp) return 0;
                 
                 const next = +(prev - 0.1).toFixed(1);
+
+                if (next === 5 && timeAudioRef) {
+                    playAudio("timmer");
+                    timeAudioRef = false;
+                }
 
                 if (next <= 0 && !gameOver && !showGameOverAlert) {
                     isHandlingTimeUp = true;

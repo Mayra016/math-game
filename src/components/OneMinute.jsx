@@ -16,6 +16,7 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
     const audioEffects = useRef(null);
     const timerRef = useRef(null);
     const scoreRef = useRef(oneScore);
+    let timeAudioRef = true;
     
     const [userInput, setUserInput] = useState("");
     const [timeWidth, setTimeWidth] = useState(100);
@@ -76,6 +77,7 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
     function resetGame() {
         gameLogic.resetLevel();
         setUserInput("");
+        playAudio("pause");
         sendData("reset");
         setGameOver(false);
         nextLevel();
@@ -94,6 +96,7 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
     }
     
     function checkAnswer() {
+        playAudio("pause");
         if (showGameOverAlert || gameOver) return;
         
         console.log(userInput);
@@ -148,6 +151,10 @@ const OneMinute = ({sendData, oneLives, oneScore}) => {
         timerRef.current = setInterval(() => {
             setTimeLeft(prev => {
                 const next = +(prev - 0.1).toFixed(1);
+                if (next === 15 && timeAudioRef) {
+                    playAudio("timmer");
+                    timeAudioRef = false;
+                }
                 if (next <= 0 && !gameOver && !showGameOverAlert) {
 
                     clearInterval(timerRef.current);

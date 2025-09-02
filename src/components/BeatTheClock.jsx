@@ -24,6 +24,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     const gameContainer = useRef(null);
     const audioEffects = useRef(null);
     const scoreRef = useRef(beatScore);
+    let timeAudioRef = true;
 
     const menuBtn = text("redirect-menu");
     const playAgainBtn = text("playAgain");
@@ -56,6 +57,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
                 popup: 'my-swal'
             }
         }).then((result) => {
+            playAudio("pause");
             setShowGameOverAlert(false);
             if (result.isConfirmed) {
                 setGameOver(false);
@@ -81,6 +83,7 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
     }
 
     function checkAnswer() {
+        playAudio("pause");
         // Don't process answers if alert is showing
         if (showGameOverAlert || gameOver) return;
         
@@ -133,6 +136,11 @@ const BeatTheClock = ({sendData, beatLifes, beatScore}) => {
         timerRef.current = setInterval(() => {
             setTimeLeft(prev => {
                 const next = +(prev - 0.1).toFixed(1);
+
+                if (next === 15 && timeAudioRef) {
+                    playAudio("timmer");
+                    timeAudioRef = false;
+                }
                 if (next <= 0 && !gameOver && !showGameOverAlert) {
                     clearInterval(timerRef.current);
                     setGameOver(true);
